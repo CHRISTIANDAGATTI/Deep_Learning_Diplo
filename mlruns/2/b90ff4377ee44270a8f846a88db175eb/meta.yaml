@@ -1,0 +1,15 @@
+artifact_uri: file:///users/cdagatti/Deep-Learning/mlruns/2/b90ff4377ee44270a8f846a88db175eb/artifacts
+end_time: 1667320632882
+entry_point_name: ''
+experiment_id: '2'
+lifecycle_stage: active
+name: ''
+run_id: b90ff4377ee44270a8f846a88db175eb
+run_uuid: b90ff4377ee44270a8f846a88db175eb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1667318724680
+status: 3
+tags: []
+user_id: cdagatti
