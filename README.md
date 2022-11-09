@@ -17,14 +17,19 @@ Algunas consideraciones a tener en cuenta para estructurar el trabajo:
 # Análisis exploratorio
 A modo exploratorio hicimos un breve análisis y visualización de la base de datos de Meli Challenge 2019, que cuenta con tres subconjuntos de datos: entrenamiento, validación y test  del idioma spanish.
 Para cada subconjunto, vimos:
+
 •	Cantidad y nombre de columnas con sus tipos:
 -	object: language, label_quality, title, category, split, tokenized_title, data
 -	int64: target, n_labels, size
 
 •	Cantidad de registros totales.
+
 •	Cantidad de valores nulos: ninguna para cualquier conjunto
+
 •	Cantidad de categorías distintas (n_labels): igual cantidad para todos, 632
+
 •	Conteo de títulos por categorías.
+
 •	Cantidad de títulos distintos: coincidían en la cantidad de registros
 
 # Preprocesamiento y tokenización de los datos
@@ -47,7 +52,7 @@ Ya habiendo definido nuestros conjuntos de datos y nuestra collation_fn, podemos
 Creamos los dataloaders para cada conjunto haciendo uso de la clase Dataloader, que nos ayuda a entrenar con mini-batches (elegimos 128 para agilizar el tiempo de entrenamiento) al modelo para aumentar la eficiencia evitando iterar de a un elemento
 
 # Embeddings
-En todos nuestros experimentos utilizamos la primera capa de embeddings que es rellenada con los valores de word embeddings (conversión del texto a una representación por vectores) continuos preentrenados en español de SBW, de 300 dimensiones (descargado en la carpata data). Estos están en formato bz2, por lo cual con la librería bz2 pudimos descomprimir el archivo que los contiene. 
+En todos nuestros experimentos utilizamos la primera capa de embeddings que es rellenada con los valores de word embeddings (conversión del texto a una representación por vectores) continuos preentrenados en español de SBW, de 300 dimensiones (descargado en la carpata data).
 
 ## MODELO MLP 
 
@@ -55,7 +60,8 @@ Experimentos
 
 •	Modelo baseline
 Se diseñó un modelo simple con una capa de emeding (300), luego dos capas ocultas (de tamaño 2048 y 1024) con función de activación relu y la capa de salida. La función de pérdida utilizada fue CrossEntropyLoss, que es apropiada para problemas de clasificación muticlase. EL learning Rate usado fue de 0.002.
-Elegimos inicialmente utiilizar SGD (CON momentum=0.9) como algoritmo de optimización. Por una cuestión de capacidad de procesamiento todos los modelos aplicados sobre el total del dataset fueron entrenados en 5 épocas (se intentó con 20 y 10 épocas para evaluar si la función de pérdida podía mostrar signos de sobreajuste; pero esto no fue posible porque se detenía el kernel por falta de recursos. La métrica utilizada para evaluar los modelos fue balanced accuracy y en conjunto de entrenamiento fue de 0.489 y en validación de 0.524
+Elegimos inicialmente utiilizar SGD (CON momentum=0.9) como algoritmo de optimización. 
+Por una cuestión de capacidad de procesamiento todos los modelos aplicados sobre el total del dataset fueron entrenados en 5 épocas (se intentó con 20 y 10 épocas para evaluar si la función de pérdida podía mostrar signos de sobreajuste; pero esto no fue posible porque se detenía el kernel por falta de recursos. La métrica utilizada para evaluar los modelos fue balanced accuracy y en conjunto de entrenamiento fue de 0.489 y en validación de 0.524
 
 •	Pruebas
 Para la búsqueda de los mejores hiperparámetros y teniendo en cuenta que por el tamaño del dataset y los recursos disponibles lleva mucho tiempo generar pruebas de hiperparámetros sobre el dataset completo (aproximadamente entre 10 y 15 minutos cada época) se decidió reducir el conjuntos de entrenamiento y validación para disminuir el tiempo de procesamiento.
