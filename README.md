@@ -1,4 +1,4 @@
-##Entregable de la materia optativa Aprendizaje Profundo de la Diplomatura en Ciencias de Datos FaMAFyC 2022.
+## Entregable de la materia optativa Aprendizaje Profundo de la Diplomatura en Ciencias de Datos FaMAFyC 2022.
 
 Integrantes: Pilar Ávila, Pablo Madriaga y Christian Dagatti.
 Profesores: Johanna Frau y Mauricio Mazuecos
@@ -14,7 +14,7 @@ Algunas consideraciones a tener en cuenta para estructurar el trabajo:
 5.	Hacer un gráfico de la función de loss a lo largo de las epochs. MLFlow también puede generar la gráfica.
 6.	Reportar performance en el conjunto de test con el mejor modelo entrenado. La métrica para reportar será balanced accuracy (Macro-recall).
 
-#Análisis exploratorio
+# Análisis exploratorio
 A modo exploratorio hicimos un breve análisis y visualización de la base de datos de Meli Challenge 2019, que cuenta con tres subconjuntos de datos: entrenamiento, validación y test  del idioma spanish.
 Para cada subconjunto, vimos:
 •	Cantidad y nombre de columnas con sus tipos:
@@ -26,7 +26,7 @@ Para cada subconjunto, vimos:
 •	Conteo de títulos por categorías.
 •	Cantidad de títulos distintos: coincidían en la cantidad de registros
 
-#Preprocesamiento y tokenización de los datos
+# Preprocesamiento y tokenización de los datos
 Filtramos y modificamos algunas consideraciones en las palabras del dataset para posteriormente poder vectorizalos y tokenizar sin inconvenientes.
 En primer lugar concatenamos los 3 conjuntos para lograr que el proceso en los datos asigne el mismo token a la misma palabra en los distintos subconjuntos (train/validation/ test). 
 Para el preprocesamiento se utilizan módulos  de las librerías nltk y gensim que ejecutan las siguientes tareas: Transformar todas las cadenas en minúsculas; eliminar etiquetas de código del tipo; separar por un espacio de cadenas alfanuméricas; reemplazar signos de puntuación ASCII por espacios; eliminar cualquier otro carácter que no sea letras o números; remover espacios múltiples;  eliminar dígitos numéricos y descartar las cadenas de longitud menor a 3. 
@@ -34,21 +34,21 @@ Una vez generado el diccionario de palabras, se eliminan de este las palabras va
 Luego, se incluyen dos tokens especiales. Uno para las palabras desconocidas (1) y otro para el relleno al ajustar el tamaño de las cadenas (0). 
 Por último, se codifican las categorías con un índice, por orden de aparición. En este caso se cuenta con 632 categorías diferentes.
 
-#PadSequences y Dataloaders
+# PadSequences y Dataloaders
 Se creó una clase PadSequences para iguales el tamaño de los datos con los que será alimentada la red.
 
 Como en este caso trabajamos con secuencias de palabras (representadas por sus índices en un vocabulario), cuando queremos buscar un batch de datos, el DataLoader de PyTorch espera que los datos del batch tengan la misma dimensión (para poder llevarlos todos a un tensor de dimensión fija). Esto lo podemos lograr mediante el parámetro de collate_fn. En particular, esta función se encarga de tomar varios elementos de un Dataset y combinarlos de manera que puedan ser devueltos como un tensor de PyTorch. Se define un módulo PadSequences que toma un valor mínimo, opcionalmente un valor máximo y un valor de relleno (pad) y dada una lista de secuencias, devuelve un tensor con padding sobre dichas secuencias.
 
 
-#DataLoaders
+# DataLoaders
 Se utilizaron los dataloaders de Pytorch para pasar los datos por lotes a la red.
 Ya habiendo definido nuestros conjuntos de datos y nuestra collation_fn, podemos definir nuestros DataLoader, uno para entrenamiento y otro para evaluación. La diferencia fundamental está en shuffle, no queremos mezclar los valores de evaluación cada vez que evaluamos porque al evaluar mediante mini-batchs nos puede generar inconsistencias.
 Creamos los dataloaders para cada conjunto haciendo uso de la clase Dataloader, que nos ayuda a entrenar con mini-batches (elegimos 128 para agilizar el tiempo de entrenamiento) al modelo para aumentar la eficiencia evitando iterar de a un elemento
 
-#Embeddings
+# Embeddings
 En todos nuestros experimentos utilizamos la primera capa de embeddings que es rellenada con los valores de word embeddings (conversión del texto a una representación por vectores) continuos preentrenados en español de SBW, de 300 dimensiones (descargado en la carpata data). Estos están en formato bz2, por lo cual con la librería bz2 pudimos descomprimir el archivo que los contiene. 
 
-##MODELO MLP 
+## MODELO MLP 
 
 Experimentos
 
@@ -106,7 +106,7 @@ Función de pérdida en conjuntos de validación y test para experimento con mej
 Balanced Accuracy sobre test – Modelo Final (caso de sobreajuste): 
  ![image](https://user-images.githubusercontent.com/102828334/200932143-cd1cc286-409a-44c1-87c5-a8fbaab87e67.png)
 
-##MODELO MLP FINAL
+## MODELO MLP FINAL
 
 Función de pérdida en conjuntos de validación y test para experimento con mejor Balanced_Accuracy:
  ![image](https://user-images.githubusercontent.com/102828334/200932047-e8110e83-df6c-4753-a704-eea92058ecd4.png)
