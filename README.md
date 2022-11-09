@@ -1,6 +1,8 @@
 Entregable de la materia optativa Aprendizaje Profundo de la Diplomatura en Ciencias de Datos FaMAFyC 2022.
+
 Integrantes: Pilar Ávila, Pablo Madriaga y Christian Dagatti.
 Profesores: Johanna Frau y Mauricio Mazuecos
+
 Consigna: Predecir la categoría de un artículo de MELI a partir de sus títulos.
 Ejercicio:
 Implementar una red neuronal que asigne una categoría dado un título. Para este práctico se puede usar cualquier tipo de red neuronal. Les que hagan solo la primera mitad de la materia, implementarán un MLP. Quienes cursan la materia completa, deberían implementar algo más complejo, usando CNNs, RNNs o Transformers.
@@ -11,6 +13,7 @@ Algunas consideraciones a tener en cuenta para estructurar el trabajo:
 4.	Hacer logs de entrenamiento (reportar tiempo transcurrido, iteraciones/s, loss, accuracy, etc.). Usar MLFlow.
 5.	Hacer un gráfico de la función de loss a lo largo de las epochs. MLFlow también puede generar la gráfica.
 6.	Reportar performance en el conjunto de test con el mejor modelo entrenado. La métrica para reportar será balanced accuracy (Macro-recall).
+
 Análisis exploratorio
 A modo exploratorio hicimos un breve análisis y visualización de la base de datos de Meli Challenge 2019, que cuenta con tres subconjuntos de datos: entrenamiento, validación y test  del idioma spanish.
 Para cada subconjunto, vimos:
@@ -22,6 +25,7 @@ Para cada subconjunto, vimos:
 •	Cantidad de categorías distintas (n_labels): igual cantidad para todos, 632
 •	Conteo de títulos por categorías.
 •	Cantidad de títulos distintos: coincidían en la cantidad de registros
+
 Preprocesamiento y tokenización de los datos
 Filtramos y modificamos algunas consideraciones en las palabras del dataset para posteriormente poder vectorizalos y tokenizar sin inconvenientes.
 En primer lugar concatenamos los 3 conjuntos para lograr que el proceso en los datos asigne el mismo token a la misma palabra en los distintos subconjuntos (train/validation/ test). 
@@ -42,21 +46,25 @@ Creamos los dataloaders para cada conjunto haciendo uso de la clase Dataloader, 
 Embeddings
 En todos nuestros experimentos utilizamos la primera capa de embeddings que es rellenada con los valores de word embeddings (conversión del texto a una representación por vectores) continuos preentrenados en español de SBW, de 300 dimensiones (descargado en la carpata data). Estos están en formato bz2, por lo cual con la librería bz2 pudimos descomprimir el archivo que los contiene. 
 
-MODELO MLP 
+ MODELO MLP 
+
 Experimentos
+
 •	Modelo baseline
 Se diseñó un modelo simple con una capa de emeding (300), luego dos capas ocultas (de tamaño 2048 y 1024) con función de activación relu y la capa de salida. La función de pérdida utilizada fue CrossEntropyLoss, que es apropiada para problemas de clasificación muticlase. EL learning Rate usado fue de 0.002.
 Elegimos inicialmente utiilizar SGD (CON momentum=0.9) como algoritmo de optimización. Por una cuestión de capacidad de procesamiento todos los modelos aplicados sobre el total del dataset fueron entrenados en 5 épocas (se intentó con 20 y 10 épocas para evaluar si la función de pérdida podía mostrar signos de sobreajuste; pero esto no fue posible porque se detenía el kernel por falta de recursos. La métrica utilizada para evaluar los modelos fue balanced accuracy y en conjunto de entrenamiento fue de 0.489 y en validación de 0.524
+
 •	Pruebas
 Para la búsqueda de los mejores hiperparámetros y teniendo en cuenta que por el tamaño del dataset y los recursos disponibles lleva mucho tiempo generar pruebas de hiperparámetros sobre el dataset completo (aproximadamente entre 10 y 15 minutos cada época) se decidió reducir el conjuntos de entrenamiento y validación para disminuir el tiempo de procesamiento.
 Inicialmente decidimos realizar experimentos  utilizando una muestra del dataset  de solo 5 categorías. Para esto se filtraron en todos los subconjutnos del datasets (train, validation y test) y se conservaron todos los registros de las categorias seleccionadas reduciendo considerablemente el tamaño y el tiempo de procesamiento. Aunque por recomendación de los profes aprendimos que no era una buena práctica ya que estaríamos entrenando un modelo con muy pocas categorías e intentaríamos predecir posteriormente 632 y tampoco nos permite analizar la mejor combinación de hiperparámetros ya que los resultados obtenidos en el modelo de prueba no serían “trasladables” si solo tiene 5 categorías analizadas.
 Por tal motivo posteriormente decidimos disminuir el dataset (siempre el fin de reducir el tiempo de procesamiento) generando muestras (del 10%) que en train, validation y test contengan las 632 categorias del dataset.
 Finalmente obtenidos la mejor combinación de hiperparámetros para nuestro problema entrenamos el modelo sobre el dataset completo.
+
 •	Modelo Final – Conclusiones:
 
 Modelo: optamos por utilizar un embedding pre-entrenado y luego definimos el modelo con "embedding_size": 300; "hidden1_size": 1024, "hidden2_size": 2048;  Optimizador:Adam; FnLoss: CrossEntropy; Lr: 0.001; Fn de activación: relu; Dropout = 0.1; Frezze embedding=True.
 
-Definiciones:
+
 •	En relación al número de capas, en las pruebas no se notó mejora aumentando el número, razón por la cual se mantuvo en dos capas ocultas.
 •	En relación al valor de las capas, fuimos variando entre los valores 2048-1024-512 para conseguir la mejor combinación.
 •	En relación al learning rate, hicimos pruebas con valores como 0.001 / 0.002 y más grandes como 0.01 concluyendo que los mejores resultados se obtuvieron con el valor de 0.001 para el modelo aplicado a muestras en el que podíamos permitirnos probar con más épocas si creíamos necesario por lo cual la velocidad de aprendizaje podía ser menor.
@@ -82,9 +90,9 @@ Listado de experimentos sobre dataset completo:
 Frezze embedding
 Al poner en False el freeze embedings, obtenemos muchos mejores resultados que utilizando los mismos parámetros y seteandolo en True. Esto nos generó la duda, de que al realizar esta modificación estemos ante un caso de overfitting.
 Aunque la métrica BAS para el conjunto de Test es de 0.93 los gráficos de función de perdida en conjunto de entrenamiento y validación nos muestran posible sobreajuste.
+
 Parámetros con mejor métrica Balanced_Accuracy en entrenamiento y validación (caso de sobreajuste):
  ![image](https://user-images.githubusercontent.com/102828334/200931734-d1144a8d-1de9-45e5-b2d4-2aacac1e20eb.png)
-
 
 
 
@@ -93,11 +101,11 @@ Función de pérdida en conjuntos de validación y test para experimento con mej
 
  
 
-
- Balanced Accuracy sobre test – Modelo Final (caso de sobreajuste): 
+Balanced Accuracy sobre test – Modelo Final (caso de sobreajuste): 
  ![image](https://user-images.githubusercontent.com/102828334/200932143-cd1cc286-409a-44c1-87c5-a8fbaab87e67.png)
 
 MODELO MLP FINAL
+
 Función de pérdida en conjuntos de validación y test para experimento con mejor Balanced_Accuracy:
  ![image](https://user-images.githubusercontent.com/102828334/200932047-e8110e83-df6c-4753-a704-eea92058ecd4.png)
 
