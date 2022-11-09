@@ -20,6 +20,7 @@ Para cada subconjunto, vimos:
 •	Cantidad y nombre de columnas con sus tipos:
 -	object: language, label_quality, title, category, split, tokenized_title, data
 -	int64: target, n_labels, size
+
 •	Cantidad de registros totales.
 •	Cantidad de valores nulos: ninguna para cualquier conjunto
 •	Cantidad de categorías distintas (n_labels): igual cantidad para todos, 632
