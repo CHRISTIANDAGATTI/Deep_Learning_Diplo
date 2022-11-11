@@ -98,28 +98,24 @@ Listado de experimentos sobre dataset completo:
 
 Frezze embedding
 Al poner en False el freeze embedings, obtenemos muchos mejores resultados que utilizando los mismos parámetros y seteandolo en True. Esto nos generó la duda, de que al realizar esta modificación estemos ante un caso de overfitting.
-Aunque la métrica BAS para el conjunto de Test es de 0.93 los gráficos de función de perdida en conjunto de entrenamiento y validación nos muestran posible sobreajuste.
+Analizando los gráficos de función de perdida en conjunto de entrenamiento y validación nos muestran un marcado sobreajuste en el modelo.
 
 Parámetros con mejor métrica Balanced_Accuracy en entrenamiento y validación (caso de sobreajuste):
  ![image](https://user-images.githubusercontent.com/102828334/200931734-d1144a8d-1de9-45e5-b2d4-2aacac1e20eb.png)
 
 
 
-Función de pérdida en conjuntos de validación y test para experimento con mejor Balanced_Accuracy (caso de sobreajuste):
+Función de pérdida en conjuntos de entrenamiento y validación para experimento con mejor Balanced_Accuracy (caso de sobreajuste):
 ![image](https://user-images.githubusercontent.com/102828334/200931795-879fb273-6f98-47f2-b005-2b3876cdd902.png)
 
- 
-
-Balanced Accuracy sobre test – Modelo Final (caso de sobreajuste): 
- ![image](https://user-images.githubusercontent.com/102828334/200932143-cd1cc286-409a-44c1-87c5-a8fbaab87e67.png)
 
 ## MODELO MLP FINAL
 
-Función de pérdida en conjuntos de validación y test para experimento con mejor Balanced_Accuracy:
+Función de pérdida en conjuntos de validación y test para experimento con mejor Balanced_Accuracy (Modelo elegido):
  ![image](https://user-images.githubusercontent.com/102828334/200932047-e8110e83-df6c-4753-a704-eea92058ecd4.png)
 
 
-Por tal aunque la métrica BAS para el conjunto de Test es menor () que al modelo anterior elegimos finalmente poner en “True” el freeze embedings evitando el sobreajuste.
+Por tal aunque la métrica BAS para el conjunto de Validación y entrenamiento es menor que al modelo anterior elegimos finalmente poner en “True” el freeze embedings evitando el sobreajuste.
 
 Parámetros con mejor métrica Balanced_Accuracy en entrenamiento y validación
  ![image](https://user-images.githubusercontent.com/102828334/200932292-7786b520-495b-4893-9254-ae4d4ad2038c.png)
