@@ -110,6 +110,7 @@ Listado de experimentos sobre dataset completo:
 
 
 Frezze embedding
+
 Al poner en False el freeze embedings, obtenemos muchos mejores resultados que utilizando los mismos parámetros y seteandolo en True. Esto nos generó la duda, de que al realizar esta modificación estemos ante un caso de overfitting.
 Analizando los gráficos de función de perdida en conjunto de entrenamiento y validación nos muestran un marcado sobreajuste en el modelo.
 
@@ -122,19 +123,23 @@ Función de pérdida en conjuntos de entrenamiento y validación para experiment
 ![image](https://user-images.githubusercontent.com/102828334/200931795-879fb273-6f98-47f2-b005-2b3876cdd902.png)
 
 
+
 ## MODELO MLP FINAL
 
 Función de pérdida en conjuntos de validación y test para experimento con mejor Balanced_Accuracy (Modelo elegido):
- ![image](https://user-images.githubusercontent.com/102828334/200932047-e8110e83-df6c-4753-a704-eea92058ecd4.png)
+![image](https://user-images.githubusercontent.com/102828334/202322143-49faf2e4-8a40-49f6-a5c1-e4aeba758195.png)
+
 
 
 Por tal aunque la métrica BAS para el conjunto de Validación y entrenamiento es menor que al modelo anterior elegimos finalmente poner en “True” el freeze embedings evitando el sobreajuste.
 
 Parámetros con mejor métrica Balanced_Accuracy en entrenamiento y validación
- ![image](https://user-images.githubusercontent.com/102828334/200932292-7786b520-495b-4893-9254-ae4d4ad2038c.png)
+![image](https://user-images.githubusercontent.com/102828334/202322248-2439605e-7f9a-492e-9d4a-f533ec04f1ae.png)
+
 
 Balanced Accuracy sobre test – Modelo Final: 
- ![image](https://user-images.githubusercontent.com/102828334/200932365-6967b00d-d071-4e9a-9920-ab7003062ef3.png)
+![image](https://user-images.githubusercontent.com/102828334/202322271-55b1faff-cc49-4a0b-9b1f-cbe99d0ad718.png)
+
 
 
 A futuro entendemos que nuestro accuracy puede mejorar, podríamos probar con modificar la arquitectura de nuestra red y algunos otros parámetros. También entendemos que podríamos aumentar el número de épocas al menos a 10 para lograr mejores predicciones teniendo en cuenta no entrar en sobre ajuste. 
