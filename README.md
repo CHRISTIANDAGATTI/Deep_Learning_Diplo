@@ -33,6 +33,7 @@ Para cada subconjunto, vimos:
 •	Cantidad de títulos distintos: coincidían en la cantidad de registros
 
 # Preprocesamiento y tokenización de los datos
+
 Filtramos y modificamos algunas consideraciones en las palabras del dataset para posteriormente poder vectorizalos y tokenizar sin inconvenientes.
 En primer lugar concatenamos los 3 conjuntos para lograr que el proceso en los datos asigne el mismo token a la misma palabra en los distintos subconjuntos (train/validation/ test). 
 Para el preprocesamiento se utilizan módulos  de las librerías nltk y gensim que ejecutan las siguientes tareas: Transformar todas las cadenas en minúsculas; eliminar etiquetas de código del tipo; separar por un espacio de cadenas alfanuméricas; reemplazar signos de puntuación ASCII por espacios; eliminar cualquier otro carácter que no sea letras o números; remover espacios múltiples;  eliminar dígitos numéricos y descartar las cadenas de longitud menor a 3. 
@@ -41,17 +42,20 @@ Luego, se incluyen dos tokens especiales. Uno para las palabras desconocidas (1)
 Por último, se codifican las categorías con un índice, por orden de aparición. En este caso se cuenta con 632 categorías diferentes.
 
 # PadSequences y Dataloaders
+
 Se creó una clase PadSequences para iguales el tamaño de los datos con los que será alimentada la red.
 
 Como en este caso trabajamos con secuencias de palabras (representadas por sus índices en un vocabulario), cuando queremos buscar un batch de datos, el DataLoader de PyTorch espera que los datos del batch tengan la misma dimensión (para poder llevarlos todos a un tensor de dimensión fija). Esto lo podemos lograr mediante el parámetro de collate_fn. En particular, esta función se encarga de tomar varios elementos de un Dataset y combinarlos de manera que puedan ser devueltos como un tensor de PyTorch. Se define un módulo PadSequences que toma un valor mínimo, opcionalmente un valor máximo y un valor de relleno (pad) y dada una lista de secuencias, devuelve un tensor con padding sobre dichas secuencias.
 
 
 # DataLoaders
+
 Se utilizaron los dataloaders de Pytorch para pasar los datos por lotes a la red.
 Ya habiendo definido nuestros conjuntos de datos y nuestra collation_fn, podemos definir nuestros DataLoader, uno para entrenamiento y otro para evaluación. La diferencia fundamental está en shuffle, no queremos mezclar los valores de evaluación cada vez que evaluamos porque al evaluar mediante mini-batchs nos puede generar inconsistencias.
 Creamos los dataloaders para cada conjunto haciendo uso de la clase Dataloader, que nos ayuda a entrenar con mini-batches (elegimos 128 para agilizar el tiempo de entrenamiento) al modelo para aumentar la eficiencia evitando iterar de a un elemento
 
 # Embeddings
+
 En todos nuestros experimentos utilizamos la primera capa de embeddings que es rellenada con los valores de word embeddings (conversión del texto a una representación por vectores) continuos preentrenados en español de SBW, de 300 dimensiones (descargado en la carpata data).
 
 ## MODELO MLP 
@@ -59,11 +63,13 @@ En todos nuestros experimentos utilizamos la primera capa de embeddings que es r
 Experimentos
 
 •	Modelo baseline
+
 Se diseñó un modelo simple con una capa de emeding (300), luego dos capas ocultas (de tamaño 2048 y 1024) con función de activación relu y la capa de salida. La función de pérdida utilizada fue CrossEntropyLoss, que es apropiada para problemas de clasificación muticlase. EL learning Rate usado fue de 0.002.
 Elegimos inicialmente utiilizar SGD (CON momentum=0.9) como algoritmo de optimización. 
 Por una cuestión de capacidad de procesamiento todos los modelos aplicados sobre el total del dataset fueron entrenados en 5 épocas (se intentó con 20 y 10 épocas para evaluar si la función de pérdida podía mostrar signos de sobreajuste; pero esto no fue posible porque se detenía el kernel por falta de recursos. La métrica utilizada para evaluar los modelos fue balanced accuracy y en conjunto de entrenamiento fue de 0.489 y en validación de 0.524
 
 •	Pruebas
+
 Para la búsqueda de los mejores hiperparámetros y teniendo en cuenta que por el tamaño del dataset y los recursos disponibles lleva mucho tiempo generar pruebas de hiperparámetros sobre el dataset completo (aproximadamente entre 10 y 15 minutos cada época) se decidió reducir el conjuntos de entrenamiento y validación para disminuir el tiempo de procesamiento.
 Inicialmente decidimos realizar experimentos  utilizando una muestra del dataset  de solo 5 categorías. Para esto se filtraron en todos los subconjutnos del datasets (train, validation y test) y se conservaron todos los registros de las categorias seleccionadas reduciendo considerablemente el tamaño y el tiempo de procesamiento. Aunque por recomendación de los profes aprendimos que no era una buena práctica ya que estaríamos entrenando un modelo con muy pocas categorías e intentaríamos predecir posteriormente 632 y tampoco nos permite analizar la mejor combinación de hiperparámetros ya que los resultados obtenidos en el modelo de prueba no serían “trasladables” si solo tiene 5 categorías analizadas.
 Por tal motivo posteriormente decidimos disminuir el dataset (siempre el fin de reducir el tiempo de procesamiento) generando muestras (del 10%) que en train, validation y test contengan las 632 categorias del dataset.
