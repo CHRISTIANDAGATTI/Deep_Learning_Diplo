@@ -81,12 +81,19 @@ Modelo: optamos por utilizar un embedding pre-entrenado y luego definimos el mod
 
 
 •	En relación al número de capas, en las pruebas no se notó mejora aumentando el número, razón por la cual se mantuvo en dos capas ocultas.
+
 •	En relación al valor de las capas, fuimos variando entre los valores 2048-1024-512 para conseguir la mejor combinación.
+
 •	En relación al learning rate, hicimos pruebas con valores como 0.001 / 0.002 y más grandes como 0.01 concluyendo que los mejores resultados se obtuvieron con el valor de 0.001 para el modelo aplicado a muestras en el que podíamos permitirnos probar con más épocas si creíamos necesario por lo cual la velocidad de aprendizaje podía ser menor.
+
 •	Todos los experimentos fueron registrados con MLflow para poder comparar los modelos y obtener las gráficas de pérdida para entrenamiento y evaluación. 
+
 •	Usamos funciones de activación relu en las capas ocultas, aunque también hicimos pruebas con función gelu sin obtener variaciones significativas.
+
 •	A la salida de la red no utilizamos una función de activación ya que al usar cómo loss una cross entropy loss entendemos ya que esta ya implementa una softmax por defecto apropiada para problemas de clasificación muticlase.
+
 •	En cuanto al optimizador probamos con SGD en primer momento, pero no obtuvimos mejores resultados comparándolo contra Adam, por eso elegimos este último.
+
 •	Probamos regularización mediante weight decay pero no obtuvimos mejoras
 
 Listado de experimentos sobre dataset de muestra:
