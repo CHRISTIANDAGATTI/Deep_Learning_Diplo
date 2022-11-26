@@ -69,6 +69,7 @@ Aplicamos un modelo simple de red RNN de tipo LSTM (Long Short-Term Memory) con 
 
 Además optamos por utilizar como optimizador al algoritmo “Adam”. Por una cuestión de capacidad de procesamiento todos los modelos aplicados sobre el total del dataset fueron entrenados en 5 épocas (se intentó con 20 y 10 épocas para evaluar si la función de pérdida podía mostrar signos de sobreajuste; pero esto no fue posible porque se detenía el kernel por falta de recursos. La métrica utilizada para evaluar los modelos fue balanced accuracy y en conjunto de entrenamiento fue de 0.754 y en validación de 0.755  que sería nuestra performance a mejorar. También le indicamos dropout=0.1 y bidirectional=True.
 
+![image](https://user-images.githubusercontent.com/102828334/204097100-1a4f519f-bedc-4c25-9cf0-78526c242de6.png)
 
  
 •	Pruebas
@@ -93,7 +94,8 @@ Finalmente luego de muchos experimentos obtenemos la que sería la mejor combina
 
 Listado de experimentos sobre dataset de muestra:
 
- 
+ ![image](https://user-images.githubusercontent.com/102828334/204097145-4c1fff2c-f914-4090-97de-65876299584b.png)
+
 
 ## MODELO RNN FINAL
 •	Modelo Final – Hiperparametros elegidos:
@@ -102,29 +104,32 @@ Modelo Final: optamos por utilizar un embedding pre-entrenado y luego definimos 
 
 Experimento sobre dataset completo:
 
+![image](https://user-images.githubusercontent.com/102828334/204097152-68da3516-0431-4e32-8945-907aaa9e299f.png)
 
 
 Parámetros con mejor métrica Balanced_Accuracy en entrenamiento y validación:
  
+![image](https://user-images.githubusercontent.com/102828334/204097158-7c551db8-64b9-46ca-92d6-33a125ef90d8.png)
 
 
 
 Función de pérdida en conjuntos de entrenamiento y validación para experimento final 
 
  
-
-
+![image](https://user-images.githubusercontent.com/102828334/204097166-ce39414d-b499-42c9-8613-ce2e42f7f026.png)
 
 
 
 Balanced Accuracy sobre train y validation – Modelo Final: 
 
 
- 
+ ![image](https://user-images.githubusercontent.com/102828334/204097172-0c195c4b-820a-4674-a0af-5d94616d1bb6.png)
 
 
 Balanced Accuracy sobre test – Modelo Final:  0.92
  
+![image](https://user-images.githubusercontent.com/102828334/204097182-50c4664e-e50a-410a-b091-595d1d725889.png)
+
 
 Finalmente, la métrica lograda a partir de las predicciones sobre el conjunto de prueba (92%) fue mejor que la obtenida con el modelo MLP (80%) y sumado a esto, el método RNN es bueno para el procesamiento de secuencias, por lo que se concluye que estas redes neuronales son ideales para este tipo de problemas.
 También notamos que en este caso de la red RNN no entramos en overfitting ya que observamos que tanto en el subconjunto de entrenamiento como de validación la función de perdida sigue bajando en las 5 épocas entrenadas, y en el caso de nuestra red MLP en la que también tuvimos buena performance respecto a predicciones tanto en validation como en test, en las 5 epocas entrenadas veíamos un probable leve sobreajuste.
