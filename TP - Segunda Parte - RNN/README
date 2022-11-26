@@ -1,7 +1,7 @@
-#Deep Learning Trabajo Práctico – Parte 2
-##Implementación de una red neuronal recurrente (RNN) con una capa LSTM.
+# Deep Learning Trabajo Práctico – Parte 2
+## Implementación de una red neuronal recurrente (RNN) con una capa LSTM.
 
-###Segunda Parte del entregable de la materia optativa Aprendizaje Profundo de la Diplomatura en Ciencias de Datos FaMAFyC 2022.
+### Segunda Parte del entregable de la materia optativa Aprendizaje Profundo de la Diplomatura en Ciencias de Datos FaMAFyC 2022.
 
 
 
@@ -12,6 +12,7 @@ Profesores: Johanna Frau y Mauricio Mazuecos
 Consigna: Predecir la categoría de un artículo de MELI a partir de sus títulos.
 
 -	Ejercicio:
+
 Implementar una red neuronal que asigne una categoría dado un título. Para este práctico se puede usar cualquier tipo de red neuronal. Les que hagan solo la primera mitad de la materia, implementarán un MLP. Quienes cursan la materia completa, deberían implementar algo más complejo, usando CNNs, RNNs o Transformers.
 Algunas consideraciones a tener en cuenta para estructurar el trabajo:
 1.	Hacer un preprocesamiento de los datos (¿Cómo vamos a representar los datos de entrada y las categorías?).
@@ -22,7 +23,8 @@ Algunas consideraciones a tener en cuenta para estructurar el trabajo:
 6.	Reportar performance en el conjunto de test con el mejor modelo entrenado. La métrica para reportar será balanced accuracy (Macro-recall).
 
 -	Entregable:
-###Análisis exploratorio
+
+### Análisis exploratorio
 
 A modo exploratorio hicimos un breve análisis y visualización de la base de datos de Meli Challenge 2019, que cuenta con tres subconjuntos de datos: entrenamiento, validación y test  del idioma spanish.
 Para cada subconjunto, vimos:
@@ -35,7 +37,7 @@ Para cada subconjunto, vimos:
 •	Conteo de títulos por categorías.
 •	Cantidad de títulos distintos: coincidían en la cantidad de registros
 
-###Preprocesamiento y tokenización de los datos
+### Preprocesamiento y tokenización de los datos
 
 Filtramos y modificamos algunas consideraciones en las palabras del dataset para posteriormente poder vectorizalos y tokenizar sin inconvenientes.
 En primer lugar concatenamos los 3 conjuntos para lograr que el proceso en los datos asigne el mismo token a la misma palabra en los distintos subconjuntos (train/validation/ test). 
@@ -50,7 +52,8 @@ Se creó una clase PadSequences para iguales el tamaño de los datos con los que
 Como en este caso trabajamos con secuencias de palabras (representadas por sus índices en un vocabulario), cuando queremos buscar un batch de datos, el DataLoader de PyTorch espera que los datos del batch tengan la misma dimensión (para poder llevarlos todos a un tensor de dimensión fija). Esto lo podemos lograr mediante el parámetro de collate_fn. En particular, esta función se encarga de tomar varios elementos de un Dataset y combinarlos de manera que puedan ser devueltos como un tensor de PyTorch. Se define un módulo PadSequences que toma un valor mínimo, opcionalmente un valor máximo y un valor de relleno (pad) y dada una lista de secuencias, devuelve un tensor con padding sobre dichas secuencias.
 
 
-###DataLoaders
+### DataLoaders
+
 Se utilizaron los dataloaders de Pytorch para pasar los datos por lotes a la red.
 Ya habiendo definido nuestros conjuntos de datos y nuestra collation_fn, podemos definir nuestros DataLoader, uno para entrenamiento y otro para evaluación. La diferencia fundamental está en shuffle, no queremos mezclar los valores de evaluación cada vez que evaluamos porque al evaluar mediante mini-batchs nos puede generar inconsistencias.
 Creamos los dataloaders para cada conjunto haciendo uso de la clase Dataloader, que nos ayuda a entrenar con mini-batches (elegimos 128 para agilizar el tiempo de entrenamiento) al modelo para aumentar la eficiencia evitando iterar de a un elemento
@@ -62,8 +65,10 @@ En todos nuestros experimentos utilizamos la primera capa de embeddings que es r
 Experimentos
 
 •	Modelo baseline
-Aplicamos un modelo simple de red RNN de tipo LSTM (Long Short-Term Memory) con una capa de embeddings y la capa de salida. La función de pérdida utilizada para todo el trabajo fue CrossEntropyLoss, apropiada para problemas de clasificación multiclase. 
+Aplicamos un modelo simple de red RNN de tipo LSTM (Long Short-Term Memory) con una capa de embeddings y la capa de salida. La función de pérdida utilizada para todo el trabajo fue CrossEntropyLoss, apropiada para problemas de clasificación multiclase.
+
 Además optamos por utilizar como optimizador al algoritmo “Adam”. Por una cuestión de capacidad de procesamiento todos los modelos aplicados sobre el total del dataset fueron entrenados en 5 épocas (se intentó con 20 y 10 épocas para evaluar si la función de pérdida podía mostrar signos de sobreajuste; pero esto no fue posible porque se detenía el kernel por falta de recursos. La métrica utilizada para evaluar los modelos fue balanced accuracy y en conjunto de entrenamiento fue de 0.754 y en validación de 0.755  que sería nuestra performance a mejorar. También le indicamos dropout=0.1 y bidirectional=True.
+
 
  
 •	Pruebas
@@ -73,7 +78,8 @@ Inicialmente decidimos realizar experimentos  utilizando una muestra del dataset
 Por tal motivo posteriormente decidimos disminuir el dataset (siempre el fin de reducir el tiempo de procesamiento) generando muestras (del 10%) que en train, validation y test contengan las 632 categorias del dataset.
 Finalmente luego de muchos experimentos obtenemos la que sería la mejor combinación de hiperparámetros para nuestro problema entrenamos el modelo sobre el dataset completo.
 
-####Conclusiones:
+#### Conclusiones:
+
 •	En relación al número de capas, notamos una mejoría en las predicciones incorporando una capa oculta adicional que fuimos probando activar con distintas funciones.
 •	En relación al valor de la capa LSTM, fuimos variando entre los valores 64-128-256.
 •	En relación al learning rate, hicimos pruebas con distintos valores concluyendo que los mejores resultados se obtuvieron con el valor de 0.001 para el modelo aplicado a muestras en el que podíamos permitirnos probar con más épocas si creíamos necesario por lo cual la velocidad de aprendizaje podía ser menor.
