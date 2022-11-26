@@ -1,0 +1,145 @@
+Start Time,Duration,Run ID,Name,Source Type,Source Name,User,Status,Bidireccional,Dropout,Epochs,Learning Rate,activation_fns,embedding_size,freeze_embedding,hidden_layer,model_name,num_layers,optimizer,weight_decay,train_balanced_acc,train_loss,val_balanced_acc,val_loss
+2022-11-25 21:03:32,2.2h,6193aa1251c74a7686dfc9e75d203337,fortunate-colt-280,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,True,0.1,5,0.001,<function relu at 0x7f3fb064ce50>,300,True,256,RNN_Final,2,"Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 1e-05
+)",1e-05,0.8542761400378596,0.5969559905579361,0.8589289495134644,0.5851773083104022
+2022-11-25 20:37:16,19.3min,fa9570f9702743b3a1d2e14edd2bb537,upbeat-moth-364,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,True,0.1,5,0.001,<function gelu at 0x7faf7550f430>,300,True,256,RNN_Muestras_16,2,"Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 1e-05
+)",1e-05,0.8410956570282503,0.6378094559011895,0.8113053721290248,0.825647347897696
+2022-11-25 20:22:44,9.7min,9acdbc80d98e480f9c89ba25d5650f67,powerful-goat-866,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,True,0.1,5,0.001,<built-in method tanh of type object at 0x7faf76f11200>,300,True,256,RNN_Muestras_15,2,"Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 1e-05
+)",1e-05,0.8425999587110243,0.6395562059816972,0.8142894950965558,0.8204384295108301
+2022-11-25 20:09:39,8.6min,b0b6e034a137468c91e37d1e21f18e09,gregarious-duck-464,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,True,0.1,5,0.001,<function mish at 0x7faf7550fca0>,300,True,256,RNN_Muestras_15,2,"Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 1e-05
+)",1e-05,0.8420184089284817,0.6337525728130652,0.8108630579044076,0.8292757840116695
+2022-11-25 19:54:30,10.6min,fb6ad4e766b8434da730a66f41d09a2f,upset-dog-707,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,True,0.1,5,0.001,,300,True,256,RNN_Muestras_14,2,"Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 1e-05
+)",1e-05,0.8737300245135997,0.483799680561022,0.8140661504490199,0.8411607543938835
+2022-11-25 19:17:42,9.4min,680a70f9705d40d0a1effc6eda323360,victorious-chimp-404,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,True,0.2,5,0.005,,300,True,256,RNN_Muestras_13,2,"Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.005
+    weight_decay: 1e-05
+)",1e-05,0.7700430513084293,0.9526619919530707,0.7741285597328825,0.9654646483770608
+2022-11-25 19:03:10,9.2min,9500f5b94634404dbfd26f4e9b39344c,tasteful-bee-335,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,True,0.1,5,0.005,,300,True,256,RNN_Muestras_12,2,"Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.005
+    weight_decay: 1e-05
+)",1e-05,0.795879089345897,0.8334722381090027,0.7907846949347181,0.9250802234547016
+2022-11-25 18:51:06,8.8min,d43fb980d2da4246b9f8f96338bbe55d,clumsy-fowl-915,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,True,0.1,5,0.005,,300,True,256,RNN_Muestras_10,2,"Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.005
+    weight_decay: 1e-05
+)",1e-05,0.7832866145114429,0.8947468941196117,0.7774685142210532,0.954877331899625
+2022-11-25 18:40:28,7.6min,2bd0dd5c86974caabe7a16b5be6c17d3,serious-skunk-655,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,True,0.1,5,0.005,,300,True,64,RNN_Muestras_10,2,"Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.005
+    weight_decay: 1e-05
+)",1e-05,0.7575084814032818,1.0071691937695921,0.7652783434768838,1.0079177210697186
+2022-11-25 18:28:30,8.5min,d6f84e9a225b4649894611f62330bc5a,worried-stoat-729,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,True,0.1,5,0.005,,300,True,64,RNN_Muestras_10,2,"Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.005
+    weight_decay: 1e-05
+)",1e-05,0.7419732722612223,1.0898306016205184,0.7549931832369967,1.0579400411344746
+2022-11-25 18:15:45,9.0min,1e53d755c6e94424b8d3bae1142dc471,shivering-mouse-342,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,True,0.1,5,0.005,,300,True,128,RNN_Muestras_9,2,"Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.005
+    weight_decay: 1e-05
+)",1e-05,0.7729855911018937,0.9440378880033305,0.7745372275569721,0.9823701082725884
+2022-11-25 17:50:57,131ms,8c58df15912a4d739be31289968f1c8d,valuable-cod-36,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FAILED,True,0.1,5,0.005,,300,True,128,RNN_Muestras_9,2,"Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.005
+    weight_decay: 1e-05
+)",1e-05,,,,
+2022-11-25 17:45:23,134ms,7d16da100fb6427db29d4407386e18c7,able-shrew-626,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FAILED,True,0.1,5,0.005,,300,True,128,RNN_Muestras_9,2,"Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.005
+    weight_decay: 1e-05
+)",1e-05,,,,
+2022-11-25 00:46:46,7.4min,b727fcc5b9da45d1bdaa1d172667a44a,abundant-carp-449,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,True,0.1,5,0.005,,300,True,64,RNN_Muestras_8,1,"Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.005
+    weight_decay: 1e-05
+)",1e-05,0.7833639910843302,0.909180070528018,0.7688518178002908,0.9945645958901448
+2022-11-25 00:23:41,13.9min,6b18ec92c47f47de94ef39fa34b2ee3d,smiling-shrimp-334,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,True,0.1,10,0.001,,300,True,64,RNN_Muestras_7,1,"Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 1e-05
+)",1e-05,0.7531637667189557,1.0514150153889377,0.7354620331427608,1.1571076044592863
+2022-11-25 00:11:37,7.5min,4190f34b96db4d23aeb038489d7bc337,blushing-stoat-837,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,True,0.1,5,0.001,,300,True,128,RNN_Muestras_5,1,"Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 1e-05
+)",1e-05,0.7419088761844084,1.095589474798028,0.7317036294654098,1.1600426660934338
+2022-11-25 00:01:26,7.1min,4d37493246f641a98af8043f6ca0659c,fearless-slug-296,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,True,0.1,5,0.001,,300,True,64,RNN_Muestras_5,1,"Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 1e-05
+)",1e-05,0.7577996932746985,1.0305166374156678,0.73950020649472,1.1419567843215965
+2022-11-24 23:46:51,7.3min,f49396e77d904b13804076bbe3be09d4,colorful-snail-668,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,True,0.1,5,0.001,,300,True,64,RNN_Muestras_4,1,optim.Adam,,0.6787797148086381,1.4019689825625201,0.6760024221023223,1.4230258495954635
+2022-11-24 23:31:58,7.5min,a64a9b5ba25544e5bdfc8564e82fa544,adaptable-trout-524,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,True,0.1,5,0.1,,300,True,32,RNN_Muestras_3,1,optim.Adam,,0.4932991356599247,2.351767339519426,0.49200429281523567,2.3951272780120436
+2022-11-24 23:22:55,7.2min,339e6ccc09a141d0a9e4f71406c3dc90,gifted-lark-820,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,True,0.1,5,0.001,,300,True,32,RNN_Muestras_2,1,optim.Adam,,0.5452820108795319,2.041117265177708,0.5557703329384572,2.0117339143683295
+2022-11-24 23:11:11,7.0min,7b6c947202d04ec8880c4e61320678fb,useful-sheep-743,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,,0.1,5,0.001,,300,True,32,RNN_Muestras,1,optim.Adam,,0.5462246528422043,2.035954213485219,0.5557251735495861,2.002786649556494
+2022-11-23 21:32:29,2.0h,69353da56f844a3db43e3cf653522ac5,receptive-asp-400,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,,0.1,5,0.001,,300,True,32,RNN_Baseline,1,optim.Adam,,0.7540003591322978,1.0734496603551014,0.7552591038201194,1.06847671383072
+2022-11-23 20:11:16,5.8min,7a1d8674e9f64d0dbf45f8c237a1fbb9,incongruous-colt-523,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FAILED,,0.1,5,0.001,,300,True,32,RNN_Muestras,1,optim.Adam,,,,,
+2022-11-22 23:57:49,1.1h,0b5d926d5b0a49f0a289e3fe4b444141,defiant-goat-493,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FINISHED,,0.1,5,0.001,,300,True,32,RNN_Baseline,1,optim.Adam,,0.7579731917332303,1.0551599093552024,0.7575311555915855,1.0548922851528988
+2022-11-22 23:43:22,8.1min,45680092318e4730bf0869622a859b14,tasteful-skunk-226,LOCAL,/users/cdagatti/miniconda3/envs/deeplearning/lib/python3.9/site-packages/ipykernel_launcher.py,cdagatti,FAILED,,0.1,5,0.001,,300,True,32,RNN_Baseline,1,optim.Adam,,,2.296145349872675,,
